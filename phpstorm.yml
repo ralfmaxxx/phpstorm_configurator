@@ -1,0 +1,4 @@
+settings:
+    inspection:
+        phpmd: "phpmd.xml"
+        phpcs: "ruleset.xml"
