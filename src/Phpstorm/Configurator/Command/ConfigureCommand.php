@@ -2,8 +2,8 @@
 
 namespace Phpstorm\Configurator\Command;
 
-use Phpstorm\Configurator\Configuration\Exception\SetterException;
-use Phpstorm\Configurator\Configuration\Setter;
+use Phpstorm\Configurator\Configuration\Exception\ConfigurationException;
+use Phpstorm\Configurator\Configuration\Configurator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -24,9 +24,9 @@ class ConfigureCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $setter = new Setter();
-            $setter->setUpProject();
-        } catch (SetterException $e) {
+            $configuration = new Configurator('phpstorm.yml');
+            $configuration->setUpProject();
+        } catch (ConfigurationException $e) {
             $output->writeln($e->getMessage());
         }
     }

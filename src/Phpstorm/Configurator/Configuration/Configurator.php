@@ -3,13 +3,26 @@
 namespace Phpstorm\Configurator\Configuration;
 
 use Exception;
-use Phpstorm\Configurator\Configuration\Exception\SetterException;
+use Phpstorm\Configurator\Configuration\Exception\ConfigurationException;
 use Phpstorm\Configurator\Configuration\File\Saver;
 
-class Setter
+class Configurator
 {
     /**
-     * @throws SetterException
+     * @var mixed
+     */
+    protected $configurationFile;
+
+    /**
+     * @param mixed $configurationFile
+     */
+    public function __construct($configurationFile = null)
+    {
+        $this->configurationFile = $configurationFile;
+    }
+
+    /**
+     * @throws ConfigurationException
      */
     public function setUpProject()
     {
@@ -19,7 +32,7 @@ class Setter
             $saver = new Saver($settingsObject);
             $saver->importInspections();
         } catch (Exception $e) {
-            throw new SetterException($e->getMessage());
+            throw new ConfigurationException($e->getMessage());
         }
 
     }
@@ -29,7 +42,7 @@ class Setter
      */
     protected function getConfigurationArray()
     {
-        return (new Reader())
+        return (new Reader($this->configurationFile))
             ->fetch()
             ->getConfiguration();
     }

@@ -31,7 +31,7 @@ class Saver
      */
     public function importInspections()
     {
-        if ($this->isFileExists(self::PHPSTORM_INSPECTION_FILE)) {
+        if ($this->isFileExists(self::PHPSTORM_INSPECTION_DIR.'/'.self::PHPSTORM_INSPECTION_FILE)) {
             throw new RuntimeException('Inspection file already exists!');
         }
         $this->checkIfDirectoryExists(self::PHPSTORM_INSPECTION_DIR);
@@ -40,7 +40,6 @@ class Saver
         if (!$this->saveInspectionFile($inspectionContent)) {
             throw new RuntimeException('Inspection file can\'t be saved');
         }
-
     }
 
     /**

@@ -2,6 +2,6 @@
 
 namespace Phpstorm\Configurator\Configuration\Exception;
 
-class SetterException extends \Exception
+class ConfigurationException extends \Exception
 {
 }
