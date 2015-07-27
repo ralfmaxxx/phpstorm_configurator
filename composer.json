@@ -10,8 +10,8 @@
     }
   ],
   "require": {
-    "symfony/console": "v2.7.2",
-    "symfony/yaml": "v2.7.2"
+    "symfony/console": "2.7.2",
+    "symfony/yaml": "2.7.2"
   },
   "require-dev":{
     "phpmd/phpmd": "2.2.*",
