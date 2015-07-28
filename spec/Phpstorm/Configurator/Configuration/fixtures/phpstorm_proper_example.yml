@@ -1,0 +1,4 @@
+settings:
+    inspection:
+        phpmd: "file.xml"
+        phpcs: "example.xml"

@@ -30,7 +30,7 @@ class Reader
      */
     public function fetch()
     {
-        if ($configurationContent = file_get_contents($this->filename)) {
+        if ($configurationContent = @file_get_contents($this->filename)) {
             try {
                 $this->configuration = Yaml::parse($configurationContent);
                 return $this;
@@ -50,7 +50,7 @@ class Reader
         if (is_array($this->configuration)) {
             return $this->configuration;
         }
-        throw new RuntimeException('Please load configuration first!');
+        throw new RuntimeException('Please load configuration first by calling fetch method!');
 
     }
 }

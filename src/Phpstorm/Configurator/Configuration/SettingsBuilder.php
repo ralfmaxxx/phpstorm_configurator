@@ -37,6 +37,6 @@ class SettingsBuilder
         if ($this->validator->isValid($configurationArray)) {
             return $this->mapper->map($configurationArray);
         }
-        throw new UnexpectedValueException('Configuration file is incorrect');
+        throw new UnexpectedValueException('Configuration structure is incorrect');
     }
 }
