@@ -1,4 +1,8 @@
 # PhpStorm Project Configurator
+[![Latest Stable Version](https://poser.pugx.org/ralfmaxxx/phpstorm_configurator/v/stable)](https://packagist.org/packages/ralfmaxxx/phpstorm_configurator) 
+[![Total Downloads](https://poser.pugx.org/ralfmaxxx/phpstorm_configurator/downloads)](https://packagist.org/packages/ralfmaxxx/phpstorm_configurator) 
+[![Latest Unstable Version](https://poser.pugx.org/ralfmaxxx/phpstorm_configurator/v/unstable)](https://packagist.org/packages/ralfmaxxx/phpstorm_configurator) 
+[![License](https://poser.pugx.org/ralfmaxxx/phpstorm_configurator/license)](https://packagist.org/packages/ralfmaxxx/phpstorm_configurator)
 
 Now it is easy to prepare and share your phpstorm configuration for projects.
 
