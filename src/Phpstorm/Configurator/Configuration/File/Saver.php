@@ -2,7 +2,7 @@
 
 namespace Phpstorm\Configurator\Configuration\File;
 
-use Phpstorm\Configurator\Configuration\Settings;
+use Phpstorm\Configurator\Configuration\Entity\Setting;
 use RuntimeException;
 
 class Saver
@@ -17,16 +17,16 @@ class Saver
     const PHPSTORM_INDENT_FILE = 'codeStyleSettings.xml';
 
     /**
-     * @var Settings
+     * @var Setting
      */
-    protected $settings;
+    protected $setting;
 
     /**
-     * @param Settings $settings
+     * @param Setting $setting
      */
-    public function __construct(Settings $settings)
+    public function __construct(Setting $setting)
     {
-        $this->settings = $settings;
+        $this->setting = $setting;
     }
 
     /**
@@ -128,7 +128,7 @@ class Saver
      */
     protected function getInspectionContent($inspectionPatternContent)
     {
-        return str_replace('{PHPMD_FILENAME}', $this->settings->getPhpMdFilename(), $inspectionPatternContent);
+        return str_replace('{PHPMD_FILENAME}', $this->setting->getInspectionPhpmd(), $inspectionPatternContent);
     }
 
     /**
@@ -173,14 +173,14 @@ class Saver
         ];
 
         $replacePatterns = [
-            $this->settings->getIndentGherkin(),
-            $this->settings->getIndentPhp(),
-            $this->settings->getIndentJs(),
-            $this->settings->getIndentYml(),
-            $this->settings->getIndentJson(),
-            $this->settings->getIndentCss(),
-            $this->settings->getIndentScss(),
-            $this->settings->getIndentHtml()
+            $this->setting->getIndentGherkin(),
+            $this->setting->getIndentPhp(),
+            $this->setting->getIndentJs(),
+            $this->setting->getIndentYml(),
+            $this->setting->getIndentJson(),
+            $this->setting->getIndentCss(),
+            $this->setting->getIndentScss(),
+            $this->setting->getIndentHtml()
         ];
 
         return str_replace($findPatterns, $replacePatterns, $indentPatternContent);
