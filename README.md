@@ -11,8 +11,13 @@ settings:
     indent:
         php: 4
         js: 4
-        gharkin: 4
+        gherkin: 4
         yml: 4
+        json: 4
+        css: 4
+        scss: 4
+        html: 4
+        
 ```
 Based on this file, just run from directory where *phpstorm.yml* is placed:
 ```
@@ -22,7 +27,7 @@ phpstorm-configurator configure:indents
 
 ### Important
 
-It works properly only on Mac/Linux.
+It works properly only on Mac/Linux and tested with *PhpStorm 9*.
 
 For now **.idea** directory has to exist.
 

@@ -10,6 +10,34 @@
                         <option name="TAB_SIZE" value="{GHERKIN}" />
                     </indentOptions>
                 </codeStyleSettings>
+                <codeStyleSettings language="HTML">
+                    <indentOptions>
+                        <option name="INDENT_SIZE" value="{HTML}" />
+                        <option name="CONTINUATION_INDENT_SIZE" value="{HTML}" />
+                        <option name="TAB_SIZE" value="{HTML}" />
+                    </indentOptions>
+                </codeStyleSettings>
+                <codeStyleSettings language="SCSS">
+                    <indentOptions>
+                        <option name="INDENT_SIZE" value="{SCSS}" />
+                        <option name="CONTINUATION_INDENT_SIZE" value="{SCSS}" />
+                        <option name="TAB_SIZE" value="{SCSS}" />
+                    </indentOptions>
+                </codeStyleSettings>
+                <codeStyleSettings language="JSON">
+                    <indentOptions>
+                        <option name="INDENT_SIZE" value="{JSON}" />
+                        <option name="CONTINUATION_INDENT_SIZE" value="{JSON}" />
+                        <option name="TAB_SIZE" value="{JSON}" />
+                    </indentOptions>
+                </codeStyleSettings>
+                <codeStyleSettings language="CSS">
+                    <indentOptions>
+                        <option name="INDENT_SIZE" value="{CSS}" />
+                        <option name="CONTINUATION_INDENT_SIZE" value="{CSS}" />
+                        <option name="TAB_SIZE" value="{CSS}" />
+                    </indentOptions>
+                </codeStyleSettings>
                 <codeStyleSettings language="JavaScript">
                     <indentOptions>
                         <option name="INDENT_SIZE" value="{JS}" />
