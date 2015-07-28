@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+    <component name="ProjectCodeStyleSettingsManager">
+        <option name="PER_PROJECT_SETTINGS">
+            <value>
+                <codeStyleSettings language="Gherkin">
+                    <indentOptions>
+                        <option name="INDENT_SIZE" value="{GHERKIN}" />
+                        <option name="CONTINUATION_INDENT_SIZE" value="{GHERKIN}" />
+                        <option name="TAB_SIZE" value="{GHERKIN}" />
+                    </indentOptions>
+                </codeStyleSettings>
+                <codeStyleSettings language="JavaScript">
+                    <indentOptions>
+                        <option name="INDENT_SIZE" value="{JS}" />
+                        <option name="CONTINUATION_INDENT_SIZE" value="{JS}" />
+                        <option name="TAB_SIZE" value="{JS}" />
+                    </indentOptions>
+                </codeStyleSettings>
+                <codeStyleSettings language="PHP">
+                    <indentOptions>
+                        <option name="INDENT_SIZE" value="{PHP}" />
+                        <option name="CONTINUATION_INDENT_SIZE" value="{PHP}" />
+                        <option name="TAB_SIZE" value="{PHP}" />
+                    </indentOptions>
+                </codeStyleSettings>
+                <codeStyleSettings language="yaml">
+                    <indentOptions>
+                        <option name="INDENT_SIZE" value="{YML}" />
+                    </indentOptions>
+                </codeStyleSettings>
+            </value>
+        </option>
+        <option name="USE_PER_PROJECT_SETTINGS" value="true" />
+    </component>
+</project>

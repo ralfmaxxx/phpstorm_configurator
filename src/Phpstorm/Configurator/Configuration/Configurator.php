@@ -22,9 +22,10 @@ class Configurator
     }
 
     /**
+     * @return bool
      * @throws ConfigurationException
      */
-    public function setUpProject()
+    public function setUpInspections()
     {
         try {
             $configurationArray = $this->getConfigurationArray();
@@ -34,7 +35,24 @@ class Configurator
         } catch (Exception $e) {
             throw new ConfigurationException($e->getMessage());
         }
+        return true;
+    }
 
+    /**
+     * @return bool
+     * @throws ConfigurationException
+     */
+    public function setUpIndents()
+    {
+        try {
+            $configurationArray = $this->getConfigurationArray();
+            $settingsObject = $this->getSettingsObject($configurationArray);
+            $saver = new Saver($settingsObject);
+            $saver->importIndents();
+        } catch (Exception $e) {
+            throw new ConfigurationException($e->getMessage());
+        }
+        return true;
     }
 
     /**

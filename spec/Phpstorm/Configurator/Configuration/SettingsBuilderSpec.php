@@ -21,6 +21,12 @@ class SettingsBuilderSpec extends ObjectBehavior
                 'inspection' => [
                     'phpmd' => 'file.xml',
                     'phpcs' => 'example.xml'
+                ],
+                'indent' => [
+                    'php' => '4',
+                    'js' => '4',
+                    'gherkin' => '4',
+                    'yml' => '4'
                 ]
             ]
         ];
@@ -35,6 +41,12 @@ class SettingsBuilderSpec extends ObjectBehavior
                 'inspect' => [
                     'phpmd' => 'file.xml',
                     'phpcs' => 'example.xml'
+                ],
+                'indent' => [
+                    'php' => '4',
+                    'js' => '4',
+                    'gherkin' => '4',
+                    'yml' => '4'
                 ]
             ]
         ];
