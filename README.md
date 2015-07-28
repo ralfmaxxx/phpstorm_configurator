@@ -14,7 +14,7 @@ settings:
         gharkin: 4
         yml: 4
 ```
-Based on this file, just run from your bin directory (default: vendor/bin):
+Based on this file, just run from directory where *phpstorm.yml* is placed:
 ```
 phpstorm-configurator configure:inspections
 phpstorm-configurator configure:indents
@@ -22,7 +22,9 @@ phpstorm-configurator configure:indents
 
 ### Important
 
-It works properly only on Mac/Linux. 
+It works properly only on Mac/Linux.
+
+For now **.idea** directory has to exist.
 
 If your settings are not imported, please **restart IDE**.
 
