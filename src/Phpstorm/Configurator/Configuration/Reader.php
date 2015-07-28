@@ -2,8 +2,11 @@
 
 namespace Phpstorm\Configurator\Configuration;
 
+use Phpstorm\Configurator\Configuration\Config\PhpstormConfiguration;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
+use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
-use Exception;
 use RuntimeException;
 
 class Reader
@@ -34,10 +37,17 @@ class Reader
     {
         if ($configurationContent = @file_get_contents($this->filename)) {
             try {
-                $this->configuration = Yaml::parse($configurationContent);
+                $configurationYml = Yaml::parse($configurationContent);
+
+                $processor = new Processor();
+
+                $this->configuration = $processor->processConfiguration(new PhpstormConfiguration(), $configurationYml);
+
                 return $this;
-            } catch (Exception $e) {
-                throw new RuntimeException('Configuration file doesn\'t have an appropriate format');
+            } catch (ParseException $e) {
+                throw new RuntimeException('Configuration file is not a proper yaml file');
+            } catch (InvalidConfigurationException $e) {
+                throw new RuntimeException($e->getMessage());
             }
         }
         throw new RuntimeException('Configuration file doesn\'t exist');
@@ -53,6 +63,5 @@ class Reader
             return $this->configuration;
         }
         throw new RuntimeException('Please load configuration first by calling fetch method!');
-
     }
 }

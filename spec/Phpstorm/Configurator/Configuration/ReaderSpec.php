@@ -22,7 +22,7 @@ class ReaderSpec extends ObjectBehavior
     function it_should_throw_runtime_exception_when_file_has_bad_format()
     {
         $this->beConstructedWith(__DIR__.'/fixtures/phpstorm_bad_format_example.yml');
-        $this->shouldThrow(new RuntimeException('Configuration file doesn\'t have an appropriate format'))->duringFetch();
+        $this->shouldThrow(new RuntimeException('Configuration file is not a proper yaml file'))->duringFetch();
     }
 
     function it_should_fetch_and_return_this_if_config_file_exists()
@@ -40,21 +40,19 @@ class ReaderSpec extends ObjectBehavior
     function it_should_return_configuration_for_proper_configuration()
     {
         $configurationArray = [
-            'settings' => [
-                'inspection' => [
-                    'phpmd' => 'file.xml',
-                    'phpcs' => 'example.xml'
-                ],
-                'indent' => [
-                    'php' => 4,
-                    'js' => 4,
-                    'yml' => 4,
-                    'gherkin' => 4,
-                    'json' => 4,
-                    'css' => 4,
-                    'scss' => 4,
-                    'html' => 4
-                ]
+            'inspection' => [
+                'phpmd' => 'file.xml',
+                'phpcs' => 'example.xml'
+            ],
+            'indent' => [
+                'php' => 4,
+                'js' => 4,
+                'yml' => 4,
+                'gherkin' => 4,
+                'json' => 4,
+                'css' => 4,
+                'scss' => 4,
+                'html' => 4
             ]
         ];
 

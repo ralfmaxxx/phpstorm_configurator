@@ -2,7 +2,14 @@
 
 Now it is easy to prepare and share your phpstorm configuration for projects.
 
-Just create simple *phpstorm*.yml which contains:
+Just create simple *phpstorm.yml* which contains:
+```
+settings:
+    inspection: ~
+    indent: ~
+```
+
+Settings have default values as is shown below:
 ```
 settings:
     inspection:
@@ -17,8 +24,10 @@ settings:
         css: 4
         scss: 4
         html: 4
-        
 ```
+
+You can easily overwrite them in your *phpstorm.yml* file.
+
 Based on this file, just run from directory where *phpstorm.yml* is placed:
 ```
 phpstorm-configurator configure:inspections
