@@ -9,7 +9,12 @@ class SettingsSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith('phpmd_rules_file.xml', 'phpcs_rules_file.xml');
+        $indentPhp = 4;
+        $indentJs = 4;
+        $indentGherkin = 4;
+        $indentYml = 4;
+
+        $this->beConstructedWith('phpmd_rules_file.xml', 'phpcs_rules_file.xml', $indentPhp, $indentJs, $indentGherkin, $indentYml);
     }
 
     function it_is_initializable()

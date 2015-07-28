@@ -13,7 +13,11 @@ class ConfigurationValidator implements ValidatorInterface
             $configurationArray['settings'],
             $configurationArray['settings']['inspection'],
             $configurationArray['settings']['inspection']['phpmd'],
-            $configurationArray['settings']['inspection']['phpcs']
+            $configurationArray['settings']['inspection']['phpcs'],
+            $configurationArray['settings']['indent']['php'],
+            $configurationArray['settings']['indent']['js'],
+            $configurationArray['settings']['indent']['gherkin'],
+            $configurationArray['settings']['indent']['yml']
         )) {
             return true;
         }

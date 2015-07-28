@@ -25,6 +25,8 @@ class Reader
     }
 
     /**
+     * @SuppressWarnings(StaticAccess)
+     *
      * @return $this
      * @throws RuntimeException
      */

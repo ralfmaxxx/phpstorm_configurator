@@ -8,10 +8,13 @@ use RuntimeException;
 class Saver
 {
     const INSPECTION_PATTERN_FILE = '/xml/inspections.xml';
+    const INDENT_PATTERN_FILE = '/xml/indents.xml';
 
     const PHPSTORM_INSPECTION_DIR = './.idea/inspectionProfiles';
+    const PHPSTORM_INDENT_DIR = './.idea';
 
     const PHPSTORM_INSPECTION_FILE = 'Project_Default.xml';
+    const PHPSTORM_INDENT_FILE = 'codeStyleSettings.xml';
 
     /**
      * @var Settings
@@ -27,12 +30,18 @@ class Saver
     }
 
     /**
+     * @return bool
      * @throws RuntimeException
      */
     public function importInspections()
     {
         if ($this->isFileExists(self::PHPSTORM_INSPECTION_DIR.'/'.self::PHPSTORM_INSPECTION_FILE)) {
-            throw new RuntimeException('Inspection file already exists!');
+            throw new RuntimeException(
+                'Inspection file already exists! Remove it manually first: '
+                .self::PHPSTORM_INSPECTION_DIR
+                .'/'
+                .self::PHPSTORM_INSPECTION_FILE
+            );
         }
         $this->checkIfDirectoryExists(self::PHPSTORM_INSPECTION_DIR);
         $inspectionPatternContent = $this->getInspectionPatternContent();
@@ -40,6 +49,29 @@ class Saver
         if (!$this->saveInspectionFile($inspectionContent)) {
             throw new RuntimeException('Inspection file can\'t be saved');
         }
+        return true;
+    }
+
+    /**
+     * @return bool
+     * @throws RuntimeException
+     */
+    public function importIndents()
+    {
+        if ($this->isFileExists(self::PHPSTORM_INDENT_DIR.'/'.self::PHPSTORM_INDENT_FILE)) {
+            throw new RuntimeException(
+                'Code style file already exists! Remove it manually first: '
+                .self::PHPSTORM_INDENT_DIR
+                .'/'
+                .self::PHPSTORM_INDENT_FILE
+            );
+        }
+        $indentPatternContent = $this->getIndentPatternContent();
+        $indentContent = $this->getIndentContent($indentPatternContent);
+        if (!$this->saveIndentFile($indentContent)) {
+            throw new RuntimeException('Code style file can\'t be saved');
+        }
+        return true;
     }
 
     /**
@@ -97,5 +129,52 @@ class Saver
     protected function getInspectionContent($inspectionPatternContent)
     {
         return str_replace('{PHPMD_FILENAME}', $this->settings->getPhpMdFilename(), $inspectionPatternContent);
+    }
+
+    /**
+     * @param string $indentContent
+     *
+     * @return int
+     */
+    protected function saveIndentFile($indentContent)
+    {
+        return file_put_contents(
+            self::PHPSTORM_INDENT_DIR.
+            '/'.
+            self::PHPSTORM_INDENT_FILE,
+            $indentContent
+        );
+    }
+
+    /**
+     * @return string
+     */
+    protected function getIndentPatternContent()
+    {
+        return file_get_contents(__DIR__.self::INDENT_PATTERN_FILE);
+    }
+
+    /**
+     * @param string $indentPatternContent
+     *
+     * @return mixed
+     */
+    protected function getIndentContent($indentPatternContent)
+    {
+        $findPatterns = [
+            '{GHERKIN}',
+            '{PHP}',
+            '{JS}',
+            '{YML}'
+        ];
+
+        $replacePatterns = [
+            $this->settings->getIndentGherkin(),
+            $this->settings->getIndentPhp(),
+            $this->settings->getIndentJs(),
+            $this->settings->getIndentYml()
+        ];
+
+        return str_replace($findPatterns, $replacePatterns, $indentPatternContent);
     }
 }
