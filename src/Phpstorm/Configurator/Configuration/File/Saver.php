@@ -165,14 +165,22 @@ class Saver
             '{GHERKIN}',
             '{PHP}',
             '{JS}',
-            '{YML}'
+            '{YML}',
+            '{JSON}',
+            '{CSS}',
+            '{SCSS}',
+            '{HTML}'
         ];
 
         $replacePatterns = [
             $this->settings->getIndentGherkin(),
             $this->settings->getIndentPhp(),
             $this->settings->getIndentJs(),
-            $this->settings->getIndentYml()
+            $this->settings->getIndentYml(),
+            $this->settings->getIndentJson(),
+            $this->settings->getIndentCss(),
+            $this->settings->getIndentScss(),
+            $this->settings->getIndentHtml()
         ];
 
         return str_replace($findPatterns, $replacePatterns, $indentPatternContent);

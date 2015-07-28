@@ -3,7 +3,13 @@ settings:
         phpmd: "phpmd.xml"
         phpcs: "ruleset.xml"
     indent:
-        php: 4
-        js: 4
-        yml: 4
+        php: 1
+        js: 2
+        yml: 3
         gherkin: 4
+        json: 5
+        css: 6
+        scss: 7
+        html: 8
+
+

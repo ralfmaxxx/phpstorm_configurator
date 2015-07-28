@@ -49,7 +49,11 @@ class ReaderSpec extends ObjectBehavior
                     'php' => 4,
                     'js' => 4,
                     'yml' => 4,
-                    'gherkin' => 4
+                    'gherkin' => 4,
+                    'json' => 4,
+                    'css' => 4,
+                    'scss' => 4,
+                    'html' => 4
                 ]
             ]
         ];

@@ -17,6 +17,22 @@ class ConfigurationMapper implements MapperInterface
         $indentJs = $configurationArray['settings']['indent']['js'];
         $indentGherkin = $configurationArray['settings']['indent']['gherkin'];
         $indentYml = $configurationArray['settings']['indent']['yml'];
-        return new Settings($phpMdFilename, $phpCsFile, $indentPhp, $indentJs, $indentGherkin, $indentYml);
+        $indentJson = $configurationArray['settings']['indent']['json'];
+        $indentCss = $configurationArray['settings']['indent']['css'];
+        $indentScss = $configurationArray['settings']['indent']['scss'];
+        $indentHtml = $configurationArray['settings']['indent']['html'];
+
+        return new Settings(
+            $phpMdFilename,
+            $phpCsFile,
+            $indentPhp,
+            $indentJs,
+            $indentGherkin,
+            $indentYml,
+            $indentHtml,
+            $indentJson,
+            $indentCss,
+            $indentScss
+        );
     }
 }

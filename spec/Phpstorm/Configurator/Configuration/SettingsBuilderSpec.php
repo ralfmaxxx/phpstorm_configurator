@@ -26,7 +26,11 @@ class SettingsBuilderSpec extends ObjectBehavior
                     'php' => '4',
                     'js' => '4',
                     'gherkin' => '4',
-                    'yml' => '4'
+                    'yml' => '4',
+                    'json' => '4',
+                    'css' => '4',
+                    'scss' => '4',
+                    'html' => '4'
                 ]
             ]
         ];
@@ -46,7 +50,11 @@ class SettingsBuilderSpec extends ObjectBehavior
                     'php' => '4',
                     'js' => '4',
                     'gherkin' => '4',
-                    'yml' => '4'
+                    'yml' => '4',
+                    'json' => '4',
+                    'css' => '4',
+                    'scss' => '4',
+                    'html' => '4'
                 ]
             ]
         ];
