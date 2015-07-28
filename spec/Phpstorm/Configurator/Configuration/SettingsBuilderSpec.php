@@ -34,7 +34,7 @@ class SettingsBuilderSpec extends ObjectBehavior
         $this->build($configurationArray)->shouldReturnAnInstanceOf(Settings::class);
     }
 
-    function it_should_throw_runtime_exception_for_invalid_config_array()
+    function it_should_throw_unexpected_value_exception_for_invalid_config_array()
     {
         $configurationArray = [
             'settings' => [
@@ -51,6 +51,8 @@ class SettingsBuilderSpec extends ObjectBehavior
             ]
         ];
 
-        $this->shouldThrow(new UnexpectedValueException('Configuration structure is incorrect'))->duringBuild($configurationArray);
+        $this->shouldThrow(
+            new UnexpectedValueException('Configuration structure is incorrect')
+        )->duringBuild($configurationArray);
     }
 }
