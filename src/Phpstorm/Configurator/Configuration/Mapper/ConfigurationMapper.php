@@ -13,6 +13,10 @@ class ConfigurationMapper implements MapperInterface
     {
         $phpMdFilename = $configurationArray['settings']['inspection']['phpmd'];
         $phpCsFile = $configurationArray['settings']['inspection']['phpcs'];
-        return new Settings($phpMdFilename, $phpCsFile);
+        $indentPhp = $configurationArray['settings']['indent']['php'];
+        $indentJs = $configurationArray['settings']['indent']['js'];
+        $indentGherkin = $configurationArray['settings']['indent']['gherkin'];
+        $indentYml = $configurationArray['settings']['indent']['yml'];
+        return new Settings($phpMdFilename, $phpCsFile, $indentPhp, $indentJs, $indentGherkin, $indentYml);
     }
 }

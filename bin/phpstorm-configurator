@@ -13,8 +13,10 @@ if (!includeIfExists(__DIR__ . '/../vendor/autoload.php') && !includeIfExists(__
 }
 
 use Symfony\Component\Console\Application;
-use Phpstorm\Configurator\Command\ConfigureCommand;
+use Phpstorm\Configurator\Command\ConfigureIndentsCommand;
+use Phpstorm\Configurator\Command\ConfigureInspectionsCommand;
 
-$application = new Application('phpstorm-configurator', '0.1.0');
-$application->add(new ConfigureCommand());
+$application = new Application('phpstorm-configurator', '0.2.0');
+$application->add(new ConfigureInspectionsCommand());
+$application->add(new ConfigureIndentsCommand());
 $application->run();

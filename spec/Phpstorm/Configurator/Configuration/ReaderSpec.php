@@ -44,6 +44,12 @@ class ReaderSpec extends ObjectBehavior
                 'inspection' => [
                     'phpmd' => 'file.xml',
                     'phpcs' => 'example.xml'
+                ],
+                'indent' => [
+                    'php' => 4,
+                    'js' => 4,
+                    'yml' => 4,
+                    'gherkin' => 4
                 ]
             ]
         ];
