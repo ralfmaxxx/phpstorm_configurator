@@ -25,9 +25,9 @@ class SettingMapper implements MapperInterface
                     $accessor->setValue($setting, $sectionName.$name, $value);
                 }
             }
-            return $setting;
         } catch (RuntimeException $e) {
             throw new RuntimeException($e->getMessage());
         }
+        return $setting;
     }
 }
