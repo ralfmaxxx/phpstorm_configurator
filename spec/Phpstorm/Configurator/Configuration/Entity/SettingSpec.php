@@ -3,13 +3,14 @@
 namespace spec\Phpstorm\Configurator\Configuration\Entity;
 
 use PhpSpec\ObjectBehavior;
+use Phpstorm\Configurator\Configuration\Entity\Setting;
 use Prophecy\Argument;
 
 class SettingSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Phpstorm\Configurator\Configuration\Entity\Setting');
+        $this->shouldHaveType(Setting::class);
     }
 
     function it_should_set_inspection_attributes_properly()

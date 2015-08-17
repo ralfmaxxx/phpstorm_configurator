@@ -3,14 +3,14 @@
 namespace spec\Phpstorm\Configurator\Configuration\Mapper;
 
 use PhpSpec\ObjectBehavior;
-use Phpstorm\Configurator\Configuration\Entity\Setting;
+use Phpstorm\Configurator\Configuration\Mapper\SettingMapper;
 use Prophecy\Argument;
 
 class SettingMapperSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Phpstorm\Configurator\Configuration\Mapper\SettingMapper');
+        $this->shouldHaveType(SettingMapper::class);
     }
 
     function it_should_return_setting_object_by_mapping_configuration_array()

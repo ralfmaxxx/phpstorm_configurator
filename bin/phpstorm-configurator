@@ -16,7 +16,7 @@ use Symfony\Component\Console\Application;
 use Phpstorm\Configurator\Command\ConfigureIndentsCommand;
 use Phpstorm\Configurator\Command\ConfigureInspectionsCommand;
 
-$application = new Application('phpstorm-configurator', '0.2.0');
+$application = new Application('phpstorm-configurator', '0.3.2');
 $application->add(new ConfigureInspectionsCommand());
 $application->add(new ConfigureIndentsCommand());
 $application->run();

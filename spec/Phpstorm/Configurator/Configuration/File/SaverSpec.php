@@ -4,6 +4,7 @@ namespace spec\Phpstorm\Configurator\Configuration\File;
 
 use PhpSpec\ObjectBehavior;
 use Phpstorm\Configurator\Configuration\Entity\Setting;
+use Phpstorm\Configurator\Configuration\File\Saver;
 use Prophecy\Argument;
 
 class SaverSpec extends ObjectBehavior
@@ -15,6 +16,6 @@ class SaverSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Phpstorm\Configurator\Configuration\File\Saver');
+        $this->shouldHaveType(Saver::class);
     }
 }
