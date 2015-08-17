@@ -3,8 +3,11 @@
 namespace Phpstorm\Configurator\Configuration;
 
 use Exception;
+use Phpstorm\Configurator\Configuration\Entity\Setting;
+use Phpstorm\Configurator\Configuration\Entity\SettingBuilder;
 use Phpstorm\Configurator\Configuration\Exception\ConfigurationException;
 use Phpstorm\Configurator\Configuration\File\Saver;
+use RuntimeException;
 
 class Configurator
 {
@@ -29,8 +32,8 @@ class Configurator
     {
         try {
             $configurationArray = $this->getConfigurationArray();
-            $settingsObject = $this->getSettingsObject($configurationArray);
-            $saver = new Saver($settingsObject);
+            $setting = $this->getSettingInstance($configurationArray);
+            $saver = new Saver($setting);
             $saver->importInspections();
         } catch (Exception $e) {
             throw new ConfigurationException($e->getMessage());
@@ -46,8 +49,8 @@ class Configurator
     {
         try {
             $configurationArray = $this->getConfigurationArray();
-            $settingsObject = $this->getSettingsObject($configurationArray);
-            $saver = new Saver($settingsObject);
+            $setting = $this->getSettingInstance($configurationArray);
+            $saver = new Saver($setting);
             $saver->importIndents();
         } catch (Exception $e) {
             throw new ConfigurationException($e->getMessage());
@@ -68,11 +71,12 @@ class Configurator
     /**
      * @param array $configurationArray
      *
-     * @return Settings
+     * @return Setting
+     * @throws RuntimeException
      */
-    protected function getSettingsObject(array $configurationArray)
+    protected function getSettingInstance(array $configurationArray)
     {
-        $settingsBuilder = new SettingsBuilder();
+        $settingsBuilder = new SettingBuilder();
         return $settingsBuilder->build($configurationArray);
     }
 }

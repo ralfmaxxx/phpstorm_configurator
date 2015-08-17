@@ -2,14 +2,12 @@
 
 namespace Phpstorm\Configurator\Configuration\Mapper;
 
-use Phpstorm\Configurator\Configuration\Settings;
-
 interface MapperInterface
 {
     /**
      * @param array $configurationArray
      *
-     * @return Settings
+     * @return mixed
      */
     public function map(array $configurationArray);
 }
