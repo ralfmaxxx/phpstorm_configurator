@@ -4,13 +4,14 @@ namespace spec\Phpstorm\Configurator\Configuration\Entity;
 
 use PhpSpec\ObjectBehavior;
 use Phpstorm\Configurator\Configuration\Entity\Setting;
+use Phpstorm\Configurator\Configuration\Entity\SettingBuilder;
 use Prophecy\Argument;
 
 class SettingBuilderSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Phpstorm\Configurator\Configuration\Entity\SettingBuilder');
+        $this->shouldHaveType(SettingBuilder::class);
     }
 
     function it_should_build_settings_object_for_proper_config_array()

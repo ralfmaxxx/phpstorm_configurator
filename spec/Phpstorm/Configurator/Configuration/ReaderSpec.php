@@ -3,6 +3,7 @@
 namespace spec\Phpstorm\Configurator\Configuration;
 
 use PhpSpec\ObjectBehavior;
+use Phpstorm\Configurator\Configuration\Reader;
 use Prophecy\Argument;
 use RuntimeException;
 
@@ -10,7 +11,7 @@ class ReaderSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Phpstorm\Configurator\Configuration\Reader');
+        $this->shouldHaveType(Reader::class);
     }
 
     function it_should_throw_runtime_exception_when_file_doesnt_exist()
