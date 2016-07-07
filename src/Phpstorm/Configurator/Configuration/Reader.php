@@ -50,6 +50,7 @@ class Reader
                 throw new RuntimeException($e->getMessage());
             }
         }
+        
         throw new RuntimeException('Configuration file doesn\'t exist');
     }
 

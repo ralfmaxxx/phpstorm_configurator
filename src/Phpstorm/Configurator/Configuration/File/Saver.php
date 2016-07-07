@@ -2,7 +2,7 @@
 
 namespace Phpstorm\Configurator\Configuration\File;
 
-use Phpstorm\Configurator\Configuration\Entity\Setting;
+use Phpstorm\Configurator\Configuration\Config\Setting;
 use RuntimeException;
 
 class Saver
@@ -68,9 +68,11 @@ class Saver
         }
         $indentPatternContent = $this->getIndentPatternContent();
         $indentContent = $this->getIndentContent($indentPatternContent);
+        
         if (!$this->saveIndentFile($indentContent)) {
             throw new RuntimeException('Code style file can\'t be saved');
         }
+        
         return true;
     }
 
@@ -118,7 +120,7 @@ class Saver
      */
     protected function getInspectionPatternContent()
     {
-        return file_get_contents(__DIR__.self::INSPECTION_PATTERN_FILE);
+        return file_get_contents(__DIR__ . self::INSPECTION_PATTERN_FILE);
     }
 
     /**
@@ -151,7 +153,7 @@ class Saver
      */
     protected function getIndentPatternContent()
     {
-        return file_get_contents(__DIR__.self::INDENT_PATTERN_FILE);
+        return file_get_contents(__DIR__ . self::INDENT_PATTERN_FILE);
     }
 
     /**

@@ -1,32 +1,33 @@
 {
-  "name": "ralfmaxxx/phpstorm_configurator",
-  "description": "Configure you phpstorm based on one file",
-  "minimum-stability": "stable",
-  "license": "proprietary",
-  "authors": [
-    {
-      "name": "Rafał Kański",
-      "email": "rafal.kanski@schibsted.pl"
-    }
-  ],
-  "require": {
-    "symfony/console": "~2.6",
-    "symfony/yaml": "~2.6",
-    "symfony/config": "~2.6",
-    "symfony/property-access": "~2.6"
-  },
-  "require-dev":{
-    "phpmd/phpmd": "2.2.*",
-    "squizlabs/php_codesniffer": "2.3.*",
-    "behat/behat": "3.*",
-    "phpspec/phpspec": "2.*"
-  },
-  "autoload": {
-    "psr-4": {
-      "Phpstorm\\Configurator\\": "src/Phpstorm/Configurator"
-    }
-  },
-  "bin": [
-    "bin/phpstorm-configurator"
-  ]
+    "name": "ralfmaxxx/phpstorm_configurator",
+    "description": "Configure you phpstorm based on one file",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Rafał Kański",
+            "email": "rafal.kanski@schibsted.pl"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "symfony/console": "^2.6|^3.0",
+        "symfony/yaml": "^2.6|^3.0",
+        "symfony/config": "^2.6|^3.0"
+    },
+    "require-dev": {
+        "phpmd/phpmd": "^2.4",
+        "squizlabs/php_codesniffer": "^2.6",
+        "behat/behat": "^3.0",
+        "phpspec/phpspec": "^2.5",
+        "phing/phing": "^2.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phpstorm\\Configurator\\": "src/Phpstorm/Configurator"
+        }
+    },
+    "bin": [
+        "bin/phpstorm-configurator"
+    ]
 }

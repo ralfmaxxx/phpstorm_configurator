@@ -21,7 +21,7 @@ class PhpstormConfiguration implements ConfigurationInterface
                 ->isRequired()
                     ->children()
                         ->scalarNode('phpmd')->defaultValue('phpmd.xml')->end()
-                        ->scalarNode('phpcs')->defaultValue('phpcs.xml')->end()
+                        ->scalarNode('phpcs')->defaultValue('ruleset.xml')->end()
                     ->end()
                 ->end()
                 ->arrayNode('indent')
