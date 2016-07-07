@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Sa Event Calendar" default="all">
+    <property name="bin_dir" value="vendor/bin" />
+
+    <target name="phpspec" description="runs phpspec tests">
+        <exec executable="${bin_dir}/phpspec" checkreturn="true" passthru="true">
+            <arg line="r --format=pretty" />
+        </exec>
+    </target>
+
+    <target name="phpmd" description="runs phpmd">
+        <exec executable="${bin_dir}/phpmd" checkreturn="true" passthru="true">
+            <arg line="src text cleancode,codesize,design" />
+        </exec>
+    </target>
+
+    <target name="phpcs" description="runs phpcs">
+        <exec executable="${bin_dir}/phpcs" checkreturn="true" passthru="true">
+            <arg line="--standard=PSR1,PSR2 src" />
+        </exec>
+    </target>
+
+    <target name="all" description="runs all" depends="phpcs,phpmd,phpspec" />
+
+</project>
+

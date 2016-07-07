@@ -3,8 +3,8 @@
 namespace Phpstorm\Configurator\Configuration;
 
 use Exception;
-use Phpstorm\Configurator\Configuration\Entity\Setting;
-use Phpstorm\Configurator\Configuration\Entity\SettingBuilder;
+use Phpstorm\Configurator\Configuration\Config\Setting;
+use Phpstorm\Configurator\Configuration\COnfig\SettingBuilder;
 use Phpstorm\Configurator\Configuration\Exception\ConfigurationException;
 use Phpstorm\Configurator\Configuration\File\Saver;
 use RuntimeException;
@@ -12,12 +12,12 @@ use RuntimeException;
 class Configurator
 {
     /**
-     * @var mixed
+     * @var null|string
      */
     protected $configurationFile;
 
     /**
-     * @param mixed $configurationFile
+     * @param null|string $configurationFile
      */
     public function __construct($configurationFile = null)
     {
@@ -38,6 +38,7 @@ class Configurator
         } catch (Exception $e) {
             throw new ConfigurationException($e->getMessage());
         }
+        
         return true;
     }
 
@@ -77,6 +78,7 @@ class Configurator
     protected function getSettingInstance(array $configurationArray)
     {
         $settingsBuilder = new SettingBuilder();
+
         return $settingsBuilder->build($configurationArray);
     }
 }
