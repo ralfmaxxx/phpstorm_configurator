@@ -40,7 +40,7 @@ phpstorm-configurator configure:indents
 
 ### Important
 
-It works properly only on Mac/Linux and tested with *PhpStorm 9*.
+It works properly only on Mac/Linux and tested with *PhpStorm 9* and *PhpStorm 2016.1*.
 
 For now **.idea** directory has to exist.
 
