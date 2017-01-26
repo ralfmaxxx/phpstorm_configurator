@@ -7,9 +7,12 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class PhpstormConfiguration implements ConfigurationInterface
 {
-    /**
-     * {@inheritdoc}
-     */
+    const DEFAULT_INDENT = 4;
+
+    const DEFAULT_PHPMD_FILE = 'phpmd.xml';
+
+    const DEFAULT_PHPCS_FILE = 'ruleset.xml';
+
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
@@ -20,21 +23,22 @@ class PhpstormConfiguration implements ConfigurationInterface
                 ->arrayNode('inspection')
                 ->isRequired()
                     ->children()
-                        ->scalarNode('phpmd')->defaultValue('phpmd.xml')->end()
-                        ->scalarNode('phpcs')->defaultValue('ruleset.xml')->end()
+                        ->scalarNode('phpmd')->defaultValue(self::DEFAULT_PHPMD_FILE)->end()
+                        ->scalarNode('phpcs')->defaultValue(self::DEFAULT_PHPCS_FILE)->end()
                     ->end()
                 ->end()
                 ->arrayNode('indent')
                     ->isRequired()
                     ->children()
-                        ->integerNode('php')->defaultValue(4)->end()
-                        ->integerNode('js')->defaultValue(4)->end()
-                        ->integerNode('gherkin')->defaultValue(4)->end()
-                        ->integerNode('yml')->defaultValue(4)->end()
-                        ->integerNode('json')->defaultValue(4)->end()
-                        ->integerNode('css')->defaultValue(4)->end()
-                        ->integerNode('scss')->defaultValue(4)->end()
-                        ->integerNode('html')->defaultValue(4)->end()
+                        ->integerNode('php')->defaultValue(self::DEFAULT_INDENT)->end()
+                        ->integerNode('js')->defaultValue(self::DEFAULT_INDENT)->end()
+                        ->integerNode('gherkin')->defaultValue(self::DEFAULT_INDENT)->end()
+                        ->integerNode('yml')->defaultValue(self::DEFAULT_INDENT)->end()
+                        ->integerNode('json')->defaultValue(self::DEFAULT_INDENT)->end()
+                        ->integerNode('css')->defaultValue(self::DEFAULT_INDENT)->end()
+                        ->integerNode('scss')->defaultValue(self::DEFAULT_INDENT)->end()
+                        ->integerNode('html')->defaultValue(self::DEFAULT_INDENT)->end()
+                        ->integerNode('xml')->defaultValue(self::DEFAULT_INDENT)->end()
                     ->end()
                 ->end()
             ->end();

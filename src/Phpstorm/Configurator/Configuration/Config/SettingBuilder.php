@@ -2,16 +2,20 @@
 
 namespace Phpstorm\Configurator\Configuration\Config;
 
+use Phpstorm\Configurator\Configuration\Configuration;
+
 class SettingBuilder
 {
     /**
-     * @param array $configurationArray
+     * @param Configuration $configuration
      *
      * @return Setting
      */
-    public function build(array $configurationArray)
+    public static function build(Configuration $configuration)
     {
-        $indent = new Indent($configurationArray['indent']);
+        $configurationArray = $configuration->get();
+
+        $indent = Indent::fromArray($configurationArray['indent']);
         $inspection = new Inspection(
             $configurationArray['inspection']['phpmd'],
             $configurationArray['inspection']['phpcs']
