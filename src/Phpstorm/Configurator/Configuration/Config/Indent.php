@@ -4,116 +4,140 @@ namespace Phpstorm\Configurator\Configuration\Config;
 
 final class Indent
 {
-    const CONFIGURATION_SUFFIX = 'Indent';
+    /**
+     * @var int
+     */
+    private $php;
 
     /**
      * @var int
      */
-    private $phpIndent;
+    private $js;
 
     /**
      * @var int
      */
-    private $jsIndent;
+    private $gherkin;
 
     /**
      * @var int
      */
-    private $gherkinIndent;
+    private $yml;
 
     /**
      * @var int
      */
-    private $ymlIndent;
+    private $css;
 
     /**
      * @var int
      */
-    private $cssIndent;
+    private $scss;
 
     /**
      * @var int
      */
-    private $scssIndent;
+    private $json;
 
     /**
      * @var int
      */
-    private $jsonIndent;
+    private $html;
 
     /**
      * @var int
      */
-    private $htmlIndent;
+    private $xml;
 
-    public function __construct(array $indentsArray)
+    private function __construct()
     {
+    }
+
+    /**
+     * @param array $indentsArray
+     *
+     * @return self
+     */
+    public static function fromArray(array $indentsArray)
+    {
+        $self = new self();
+
         foreach ($indentsArray as $indentName => $indentValue) {
-            $this->{$indentName . self::CONFIGURATION_SUFFIX} = $indentValue;
+            $self->{$indentName} = $indentValue;
         }
+
+        return $self;
     }
 
     /**
      * @return int
      */
-    public function getPhpIndent()
+    public function getPhp()
     {
-        return $this->phpIndent;
+        return $this->php;
     }
 
     /**
      * @return int
      */
-    public function getJsIndent()
+    public function getJs()
     {
-        return $this->jsIndent;
+        return $this->js;
     }
 
     /**
      * @return int
      */
-    public function getGherkinIndent()
+    public function getGherkin()
     {
-        return $this->gherkinIndent;
+        return $this->gherkin;
     }
 
     /**
      * @return int
      */
-    public function getYmlIndent()
+    public function getYml()
     {
-        return $this->ymlIndent;
+        return $this->yml;
     }
 
     /**
      * @return int
      */
-    public function getCssIndent()
+    public function getCss()
     {
-        return $this->cssIndent;
+        return $this->css;
     }
 
     /**
      * @return int
      */
-    public function getScssIndent()
+    public function getScss()
     {
-        return $this->scssIndent;
+        return $this->scss;
     }
 
     /**
      * @return int
      */
-    public function getJsonIndent()
+    public function getJson()
     {
-        return $this->jsonIndent;
+        return $this->json;
     }
 
     /**
      * @return int
      */
-    public function getHtmlIndent()
+    public function getHtml()
     {
-        return $this->htmlIndent;
+        return $this->html;
+    }
+
+    /**
+     * @return int
+     */
+    public function getXml()
+    {
+        return $this->xml;
     }
 }

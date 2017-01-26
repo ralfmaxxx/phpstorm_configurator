@@ -130,7 +130,11 @@ class Saver
      */
     protected function getInspectionContent($inspectionPatternContent)
     {
-        return str_replace('{PHPMD_FILENAME}', $this->setting->getInspectionPhpmd(), $inspectionPatternContent);
+        return str_replace(
+            '{PHPMD_FILENAME}',
+            $this->setting->getInspection()->getPhpmd(),
+            $inspectionPatternContent
+        );
     }
 
     /**
@@ -171,18 +175,22 @@ class Saver
             '{JSON}',
             '{CSS}',
             '{SCSS}',
-            '{HTML}'
+            '{HTML}',
+            '{XML}',
         ];
 
+        $indent = $this->setting->getIndent();
+
         $replacePatterns = [
-            $this->setting->getIndentGherkin(),
-            $this->setting->getIndentPhp(),
-            $this->setting->getIndentJs(),
-            $this->setting->getIndentYml(),
-            $this->setting->getIndentJson(),
-            $this->setting->getIndentCss(),
-            $this->setting->getIndentScss(),
-            $this->setting->getIndentHtml()
+            $indent->getGherkin(),
+            $indent->getPhp(),
+            $indent->getJs(),
+            $indent->getYml(),
+            $indent->getJson(),
+            $indent->getCss(),
+            $indent->getScss(),
+            $indent->getHtml(),
+            $indent->getXml(),
         ];
 
         return str_replace($findPatterns, $replacePatterns, $indentPatternContent);

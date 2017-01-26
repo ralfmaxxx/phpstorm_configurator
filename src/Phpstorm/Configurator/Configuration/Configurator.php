@@ -3,25 +3,28 @@
 namespace Phpstorm\Configurator\Configuration;
 
 use Exception;
-use Phpstorm\Configurator\Configuration\Config\Setting;
 use Phpstorm\Configurator\Configuration\COnfig\SettingBuilder;
 use Phpstorm\Configurator\Configuration\Exception\ConfigurationException;
 use Phpstorm\Configurator\Configuration\File\Saver;
-use RuntimeException;
 
 class Configurator
 {
-    /**
-     * @var null|string
-     */
-    protected $configurationFile;
+    private $setting;
 
     /**
      * @param null|string $configurationFile
+     *
+     * @throws ConfigurationException
      */
     public function __construct($configurationFile = null)
     {
-        $this->configurationFile = $configurationFile;
+        try {
+            $this->setting = SettingBuilder::build(
+                Configuration::fromFilePath($configurationFile)
+            );
+        } catch (Exception $exception) {
+            throw ConfigurationException::fromException($exception);
+        }
     }
 
     /**
@@ -31,12 +34,10 @@ class Configurator
     public function setUpInspections()
     {
         try {
-            $configurationArray = $this->getConfigurationArray();
-            $setting = $this->getSettingInstance($configurationArray);
-            $saver = new Saver($setting);
+            $saver = new Saver($this->setting);
             $saver->importInspections();
-        } catch (Exception $e) {
-            throw new ConfigurationException($e->getMessage());
+        } catch (Exception $exception) {
+            throw ConfigurationException::fromException($exception);
         }
         
         return true;
@@ -49,36 +50,11 @@ class Configurator
     public function setUpIndents()
     {
         try {
-            $configurationArray = $this->getConfigurationArray();
-            $setting = $this->getSettingInstance($configurationArray);
-            $saver = new Saver($setting);
+            $saver = new Saver($this->setting);
             $saver->importIndents();
-        } catch (Exception $e) {
-            throw new ConfigurationException($e->getMessage());
+        } catch (Exception $exception) {
+            throw ConfigurationException::fromException($exception);
         }
         return true;
-    }
-
-    /**
-     * @return array
-     */
-    protected function getConfigurationArray()
-    {
-        return (new Reader($this->configurationFile))
-            ->fetch()
-            ->getConfiguration();
-    }
-
-    /**
-     * @param array $configurationArray
-     *
-     * @return Setting
-     * @throws RuntimeException
-     */
-    protected function getSettingInstance(array $configurationArray)
-    {
-        $settingsBuilder = new SettingBuilder();
-
-        return $settingsBuilder->build($configurationArray);
     }
 }
