@@ -3,9 +3,10 @@
 namespace spec\Phpstorm\Configurator\Configuration\Config;
 
 use PhpSpec\ObjectBehavior;
+use Phpstorm\Configurator\Configuration\Config\Configuration;
 use Phpstorm\Configurator\Configuration\Config\Setting;
 use Phpstorm\Configurator\Configuration\Config\SettingBuilder;
-use Phpstorm\Configurator\Configuration\Configuration;
+use Phpstorm\Configurator\Configuration\Config\SettingBuilderInterface;
 
 /**
  * @mixin SettingBuilder
@@ -32,13 +33,14 @@ class SettingBuilderSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType(SettingBuilder::class);
+        $this->shouldImplement(SettingBuilderInterface::class);
     }
 
-    function it_builds_settings_object_from_configuration(Configuration $configuration)
+    function it_builds_settings_object_from_configuration()
     {
-        $configuration->get()->willReturn(self::CONFIGURATION);
+        $configuration = new Configuration(self::CONFIGURATION);
 
-        $this::build($configuration)->shouldReturnSettingInstanceFrom(self::CONFIGURATION);
+        $this->build($configuration)->shouldReturnSettingInstanceFrom(self::CONFIGURATION);
     }
 
     public function getMatchers()

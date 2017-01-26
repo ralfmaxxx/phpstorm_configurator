@@ -2,59 +2,74 @@
 
 namespace Phpstorm\Configurator\Configuration;
 
-use Exception;
-use Phpstorm\Configurator\Configuration\COnfig\SettingBuilder;
+use Phpstorm\Configurator\Configuration\Config\ConfigurationFactoryInterface;
+use Phpstorm\Configurator\Configuration\Config\SettingBuilderInterface;
+use Phpstorm\Configurator\Configuration\Entity\Indent;
+use Phpstorm\Configurator\Configuration\Entity\Inspection;
 use Phpstorm\Configurator\Configuration\Exception\ConfigurationException;
-use Phpstorm\Configurator\Configuration\File\Saver;
+use Phpstorm\Configurator\Configuration\Repository\Exception\CouldNotSaveFileException;
+use Phpstorm\Configurator\Configuration\Repository\FileSystemRepositoryInterface;
+use RuntimeException;
 
 class Configurator
 {
-    private $setting;
+    private $configurationFactory;
+
+    private $settingBuilder;
+
+    private $fileRepository;
+
+    public function __construct(
+        ConfigurationFactoryInterface $configurationFactory,
+        SettingBuilderInterface $settingBuilder,
+        FileSystemRepositoryInterface $filesystemRepository
+    ) {
+        $this->settingBuilder = $settingBuilder;
+        $this->fileRepository = $filesystemRepository;
+        $this->configurationFactory = $configurationFactory;
+    }
 
     /**
      * @param null|string $configurationFile
      *
      * @throws ConfigurationException
      */
-    public function __construct($configurationFile = null)
+    public function setUpInspections($configurationFile = null)
     {
         try {
-            $this->setting = SettingBuilder::build(
-                Configuration::fromFilePath($configurationFile)
+            $setting = $this->settingBuilder->build(
+                $this->configurationFactory->fromFilePath($configurationFile)
             );
-        } catch (Exception $exception) {
+
+            $inspectionFile = Inspection::createFromSetting($setting);
+
+            $this->fileRepository->save($inspectionFile);
+        } catch (CouldNotSaveFileException $exception) {
+            throw ConfigurationException::fromException($exception);
+        } catch (RuntimeException $exception) {
             throw ConfigurationException::fromException($exception);
         }
     }
 
     /**
-     * @return bool
+     * @param null|string $configurationFile
+     *
      * @throws ConfigurationException
      */
-    public function setUpInspections()
+    public function setUpIndents($configurationFile = null)
     {
         try {
-            $saver = new Saver($this->setting);
-            $saver->importInspections();
-        } catch (Exception $exception) {
-            throw ConfigurationException::fromException($exception);
-        }
-        
-        return true;
-    }
+            $setting = $this->settingBuilder->build(
+                $this->configurationFactory->fromFilePath($configurationFile)
+            );
 
-    /**
-     * @return bool
-     * @throws ConfigurationException
-     */
-    public function setUpIndents()
-    {
-        try {
-            $saver = new Saver($this->setting);
-            $saver->importIndents();
-        } catch (Exception $exception) {
+            $indentFile = Indent::createFromSetting($setting);
+
+            $this->fileRepository->save($indentFile);
+        } catch (CouldNotSaveFileException $exception) {
+            throw ConfigurationException::fromException($exception);
+        } catch (RuntimeException $exception) {
             throw ConfigurationException::fromException($exception);
         }
-        return true;
     }
 }

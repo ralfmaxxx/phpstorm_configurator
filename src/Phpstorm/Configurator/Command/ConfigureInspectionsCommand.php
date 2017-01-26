@@ -3,12 +3,10 @@
 namespace Phpstorm\Configurator\Command;
 
 use Phpstorm\Configurator\Configuration\Exception\ConfigurationException;
-use Phpstorm\Configurator\Configuration\Configurator;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ConfigureInspectionsCommand extends Command implements PhpstormCommandInterface
+class ConfigureInspectionsCommand extends AbstractPhpstormCommand
 {
     const COMMAND_NAME = 'configure:inspections';
     const COMMAND_DESCRIPTION = 'Configure PphStorm inspection based on phpstorm.yml';
@@ -25,12 +23,16 @@ class ConfigureInspectionsCommand extends Command implements PhpstormCommandInte
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $configuration = new Configurator(self::PHPSTORM_YML_NAME);
-            if ($configuration->setUpInspections()) {
+            if (!$this->hasInitializationError()) {
+                $this->getConfiguration()->setUpInspections(self::PHPSTORM_YML_NAME);
                 $output->writeln(self::SUCCESS_MESSAGE);
+
+                return self::SUCCESS_EXIT_CODE;
             }
-        } catch (ConfigurationException $e) {
-            $output->writeln($e->getMessage());
+
+            $output->writeln($this->getInitializationError());
+        } catch (ConfigurationException $exception) {
+            $output->writeln($exception->getMessage());
         }
     }
 }

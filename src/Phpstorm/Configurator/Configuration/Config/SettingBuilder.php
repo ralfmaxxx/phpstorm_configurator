@@ -2,16 +2,11 @@
 
 namespace Phpstorm\Configurator\Configuration\Config;
 
-use Phpstorm\Configurator\Configuration\Configuration;
-
-class SettingBuilder
+class SettingBuilder implements SettingBuilderInterface
 {
-    /**
-     * @param Configuration $configuration
-     *
-     * @return Setting
-     */
-    public static function build(Configuration $configuration)
+    const CONFIGURATION_ARRAY = [];
+
+    public function build(Configuration $configuration)
     {
         $configurationArray = $configuration->get();
 
