@@ -4,6 +4,12 @@
 [![Latest Unstable Version](https://poser.pugx.org/ralfmaxxx/phpstorm_configurator/v/unstable)](https://packagist.org/packages/ralfmaxxx/phpstorm_configurator) 
 [![License](https://poser.pugx.org/ralfmaxxx/phpstorm_configurator/license)](https://packagist.org/packages/ralfmaxxx/phpstorm_configurator)
 
+### Requirements
+
+*  `PHP>=5.6`
+
+### Usage
+
 Now it is easy to prepare and share your phpstorm configuration for projects.
 
 Just create simple *phpstorm.yml* which contains:
@@ -28,6 +34,7 @@ settings:
         css: 4
         scss: 4
         html: 4
+        xml: 4
 ```
 
 You can easily overwrite them in your *phpstorm.yml* file.
@@ -40,10 +47,12 @@ phpstorm-configurator configure:indents
 
 ### Important
 
-It works properly only on Mac/Linux and tested with *PhpStorm 9* and *PhpStorm 2016.1*.
+It works properly only on Mac/Linux and tested with *PhpStorm 9* and *PhpStorm 2016.(1,2,3)*.
 
 For now **.idea** directory has to exist.
 
 If your settings are not imported, please **restart IDE**.
 
 Inspections will be imported only if your files have **proper structure**.
+
+For now phpcs file has to be named "ruleset.xml". Otherwise it won't be used by PhpStorm.

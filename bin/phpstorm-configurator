@@ -1,6 +1,9 @@
 #!/usr/bin/env php
 <?php
 
+const VERSION = '0.5.0';
+const APP_NAME = 'phpstorm-configurator';
+
 function includeIfExists($file) {
     if (file_exists($file)) {
         return include $file;
@@ -16,7 +19,6 @@ use Symfony\Component\Console\Application;
 use Phpstorm\Configurator\Command\ConfigureIndentsCommand;
 use Phpstorm\Configurator\Command\ConfigureInspectionsCommand;
 
-$application = new Application('phpstorm-configurator', '0.4.0');
-$application->add(new ConfigureInspectionsCommand());
-$application->add(new ConfigureIndentsCommand());
+$application = new Application(APP_NAME, VERSION);
+$application->addCommands([new ConfigureInspectionsCommand(), new ConfigureIndentsCommand()]);
 $application->run();

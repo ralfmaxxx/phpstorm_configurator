@@ -57,6 +57,13 @@
                         <option name="INDENT_SIZE" value="{YML}" />
                     </indentOptions>
                 </codeStyleSettings>
+                <codeStyleSettings language="XML">
+                    <indentOptions>
+                        <option name="INDENT_SIZE" value="{XML}" />
+                        <option name="CONTINUATION_INDENT_SIZE" value="{XML}" />
+                        <option name="TAB_SIZE" value="{XML}" />
+                    </indentOptions>
+                </codeStyleSettings>
             </value>
         </option>
         <option name="USE_PER_PROJECT_SETTINGS" value="true" />

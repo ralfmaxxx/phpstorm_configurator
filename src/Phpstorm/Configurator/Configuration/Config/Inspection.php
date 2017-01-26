@@ -7,36 +7,36 @@ final class Inspection
     /**
      * @var string
      */
-    private $phpmdConfigFile;
+    private $phpmd;
 
     /**
      * @var string
      */
-    private $phpcsConfigFile;
+    private $phpcs;
 
     /**
-     * @param string $phpmdFile
-     * @param string $phpcsFile
+     * @param string $phpmd
+     * @param string $phpcs
      */
-    public function __construct($phpmdFile, $phpcsFile)
+    public function __construct($phpmd, $phpcs)
     {
-        $this->phpmdConfigFile = $phpmdFile;
-        $this->phpcsConfigFile = $phpcsFile;
+        $this->phpmd = $phpmd;
+        $this->phpcs = $phpcs;
     }
 
     /**
      * @return string
      */
-    public function getPhpmdConfigFile()
+    public function getPhpmd()
     {
-        return $this->phpmdConfigFile;
+        return $this->phpmd;
     }
 
     /**
      * @return string
      */
-    public function getPhpcsConfigFile()
+    public function getPhpcs()
     {
-        return $this->phpcsConfigFile;
+        return $this->phpcs;
     }
 }

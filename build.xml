@@ -10,7 +10,7 @@
 
     <target name="phpmd" description="runs phpmd">
         <exec executable="${bin_dir}/phpmd" checkreturn="true" passthru="true">
-            <arg line="src text cleancode,codesize,design" />
+            <arg line="src text codesize,design" />
         </exec>
     </target>
 
