@@ -2,13 +2,11 @@
 
 namespace Phpstorm\Configurator\Command;
 
-use Phpstorm\Configurator\Configuration\Configurator;
 use Phpstorm\Configurator\Configuration\Exception\ConfigurationException;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ConfigureIndentsCommand extends Command implements PhpstormCommandInterface
+class ConfigureIndentsCommand extends AbstractPhpstormCommand
 {
     const COMMAND_NAME = 'configure:indents';
     const COMMAND_DESCRIPTION = 'Configure PphStorm indents based on phpstorm.yml';
@@ -25,12 +23,16 @@ class ConfigureIndentsCommand extends Command implements PhpstormCommandInterfac
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $configuration = new Configurator(self::PHPSTORM_YML_NAME);
-            if ($configuration->setUpIndents()) {
+            if (!$this->hasInitializationError()) {
+                $this->getConfiguration()->setUpIndents(self::PHPSTORM_YML_NAME);
                 $output->writeln(self::SUCCESS_MESSAGE);
+
+                return self::SUCCESS_EXIT_CODE;
             }
-        } catch (ConfigurationException $e) {
-            $output->writeln($e->getMessage());
+
+            $output->writeln($this->getInitializationError());
+        } catch (ConfigurationException $exception) {
+            $output->writeln($exception->getMessage());
         }
     }
 }
